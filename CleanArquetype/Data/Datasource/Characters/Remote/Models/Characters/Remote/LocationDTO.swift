@@ -8,7 +8,12 @@
 import Foundation
 
 // MARK: LocationDTO
-struct LocationDTO: Codable, Hashable {
+struct LocationDTO: Codable {
     let name: String
     let url: String
+}
+extension LocationDTO {
+    var toEntity: Location {
+        Location(name: name, url: url)
+    }
 }

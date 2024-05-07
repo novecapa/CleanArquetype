@@ -8,8 +8,9 @@
 import Foundation
 
 // MARK: GenderDTO
-enum GenderDTO: String, Codable {
+enum Gender: String, Codable {
     case female = "Female"
+    case genderless = "Genderless"
     case male = "Male"
     case unknown = "unknown"
 }

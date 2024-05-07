@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: StatusDTO
-enum StatusDTO: String, Codable {
+enum Status: String, Codable {
     case alive = "Alive"
     case dead = "Dead"
     case unknown = "unknown"
