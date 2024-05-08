@@ -7,23 +7,23 @@
 
 import Foundation
 
-protocol CharactersUseCaseProtocol {
-    func get(page: Int) async throws -> Characters
-    func search(for name: String, page: Int) async throws -> Characters
+protocol CardsUseCaseProtocol {
+    func get(page: Int) async throws -> Cards
+    func search(for name: String, page: Int) async throws -> Cards
 }
 
-struct CharactersUseCase: CharactersUseCaseProtocol {
+struct CardsUseCase: CardsUseCaseProtocol {
 
-    let repository: CharactersRepositoryProtocol
-    init(repository: CharactersRepositoryProtocol) {
+    let repository: CardsRepositoryProtocol
+    init(repository: CardsRepositoryProtocol) {
         self.repository = repository
     }
 
-    func get(page: Int) async throws -> Characters {
-        try await repository.getCharacters(page: page)
+    func get(page: Int) async throws -> Cards {
+        try await repository.get(page: page)
     }
 
-    func search(for name: String, page: Int) async throws -> Characters {
-        try await repository.searchCharacters(for: name, page: page)
+    func search(for name: String, page: Int) async throws -> Cards {
+        try await repository.search(for: name, page: page)
     }
 }

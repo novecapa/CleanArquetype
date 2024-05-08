@@ -11,7 +11,7 @@ import SwiftUI
 struct CleanArquetypeApp: App {
     var body: some Scene {
         WindowGroup {
-            CharactersListBuilder().build()
+            CardsListBuilder().build()
         }
     }
 }

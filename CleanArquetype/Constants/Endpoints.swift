@@ -8,11 +8,5 @@
 import Foundation
 
 enum Endpoints {
-    static let baseURL = "https://rickandmortyapi.com/api/"
-
-    enum Constants {
-        static let character = "character"
-        static let page = "page"
-        static let name = "name"
-    }
+    static let baseURL = "https://api.pokemontcg.io/v2/"
 }

@@ -1,5 +1,5 @@
 //
-//  CharacterImagePlaceHolder.swift
+//  CardImagePlaceHolder.swift
 //  CleanArquetype
 //
 //  Created by Josep Cerdá Penadés on 7/5/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CharacterImagePlaceHolder: View {
+struct CardImagePlaceHolder: View {
     var body: some View {
         Image(systemName: "tortoise.circle")
             .scaledToFit()
@@ -15,5 +15,5 @@ struct CharacterImagePlaceHolder: View {
 }
 
 #Preview {
-    CharacterImagePlaceHolder()
+    CardImagePlaceHolder()
 }
