@@ -23,12 +23,12 @@ struct CardsRemoteDatasourcePreview: CardsRemoteDatasourceProtocol {
         Bundle.main.url(forResource: fileName, withExtension: Constants.jsonExt)!
     }
 
-    func get(page: Int) async throws -> CardsDTO {
+    func get(page: Int, orderBy: OrderBy) async throws -> CardsDTO {
         let data = try Data(contentsOf: bundleURL)
         return try JSONDecoder().decode(CardsDTO.self, from: data)
     }
     
-    func search(for name: String, page: Int) async throws -> CardsDTO {
+    func search(for name: String, page: Int, orderBy: OrderBy) async throws -> CardsDTO {
         let data = try Data(contentsOf: bundleURL)
         return try JSONDecoder().decode(CardsDTO.self, from: data)
     }

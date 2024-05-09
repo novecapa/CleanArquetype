@@ -37,7 +37,6 @@
 		721B60BB2BEA219A00F85F2C /* CardsRemoteDatasourcePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721B60BA2BEA219A00F85F2C /* CardsRemoteDatasourcePreview.swift */; };
 		721B60BE2BEA227F00F85F2C /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721B60BD2BEA227F00F85F2C /* CardCell.swift */; };
 		721B60C02BEA275600F85F2C /* CardImagePlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721B60BF2BEA275600F85F2C /* CardImagePlaceHolder.swift */; };
-		721B60C22BEA2F9900F85F2C /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721B60C12BEA2F9900F85F2C /* CardDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,7 +90,6 @@
 		721B60BA2BEA219A00F85F2C /* CardsRemoteDatasourcePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsRemoteDatasourcePreview.swift; sourceTree = "<group>"; };
 		721B60BD2BEA227F00F85F2C /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		721B60BF2BEA275600F85F2C /* CardImagePlaceHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImagePlaceHolder.swift; sourceTree = "<group>"; };
-		721B60C12BEA2F9900F85F2C /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,7 +326,6 @@
 			isa = PBXGroup;
 			children = (
 				721B609D2BE984E800F85F2C /* CardsList */,
-				721B609E2BE984F200F85F2C /* CardDetail */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -367,14 +364,6 @@
 				721B60A32BE9852700F85F2C /* CardsListBuilder.swift */,
 			);
 			path = CardsList;
-			sourceTree = "<group>";
-		};
-		721B609E2BE984F200F85F2C /* CardDetail */ = {
-			isa = PBXGroup;
-			children = (
-				721B60C12BEA2F9900F85F2C /* CardDetailView.swift */,
-			);
-			path = CardDetail;
 			sourceTree = "<group>";
 		};
 		721B60A72BE9866A00F85F2C /* Entities */ = {
@@ -586,7 +575,6 @@
 				721B60B92BEA214100F85F2C /* CardsListViewPreview.swift in Sources */,
 				721B60812BE97D0A00F85F2C /* NetworkMethod.swift in Sources */,
 				721B60BB2BEA219A00F85F2C /* CardsRemoteDatasourcePreview.swift in Sources */,
-				721B60C22BEA2F9900F85F2C /* CardDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

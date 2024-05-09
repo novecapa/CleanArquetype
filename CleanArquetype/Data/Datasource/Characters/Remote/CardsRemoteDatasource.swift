@@ -8,8 +8,13 @@
 import Foundation
 
 protocol CardsRemoteDatasourceProtocol {
-    func get(page: Int) async throws -> CardsDTO
-    func search(for name: String, page: Int) async throws -> CardsDTO
+    func get(page: Int, orderBy: OrderBy) async throws -> CardsDTO
+    func search(for name: String, page: Int, orderBy: OrderBy) async throws -> CardsDTO
+}
+
+enum OrderBy: String {
+    case name
+    case number
 }
 
 struct CardsRemoteDatasource: CardsRemoteDatasourceProtocol {
@@ -18,6 +23,7 @@ struct CardsRemoteDatasource: CardsRemoteDatasourceProtocol {
         static let cards = "cards"
         static let page = "page"
         static let pageSize = "pageSize"
+        static let orderBy = "orderBy"
         static let size = 100
         static let search = "q"
         static let prefixName = "name:"
@@ -31,11 +37,12 @@ struct CardsRemoteDatasource: CardsRemoteDatasourceProtocol {
         self.networkClient = networkClient
     }
 
-    func get(page: Int) async throws -> CardsDTO {
+    func get(page: Int, orderBy: OrderBy = .name) async throws -> CardsDTO {
         let url = baseURL + Constants.cards
-        let queryParams = [
+        let queryParams: [String: Any] = [
             Constants.page: page,
-            Constants.pageSize: Constants.size
+            Constants.pageSize: Constants.size,
+            Constants.orderBy: orderBy.rawValue
         ]
         return try await networkClient.call(urlString: url,
                                             method: .get,
@@ -43,12 +50,13 @@ struct CardsRemoteDatasource: CardsRemoteDatasourceProtocol {
                                             of: CardsDTO.self)
     }
 
-    func search(for name: String, page: Int) async throws -> CardsDTO {
+    func search(for name: String, page: Int, orderBy: OrderBy = .name) async throws -> CardsDTO {
         let url = baseURL + Constants.cards
         let queryParams: [String: Any] = [
             Constants.page: page,
             Constants.pageSize: Constants.size,
-            Constants.search: Constants.prefixName + name
+            Constants.search: Constants.prefixName + name,
+            Constants.orderBy: orderBy.rawValue
         ]
         return try await networkClient.call(urlString: url,
                                             method: .get,

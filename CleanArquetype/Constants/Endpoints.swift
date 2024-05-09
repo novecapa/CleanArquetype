@@ -8,5 +8,6 @@
 import Foundation
 
 enum Endpoints {
+    // https://docs.pokemontcg.io
     static let baseURL = "https://api.pokemontcg.io/v2/"
 }

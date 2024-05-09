@@ -12,6 +12,8 @@ struct CardsListView: View {
     enum Constants {
         static let columnNumber: CGFloat = 2
         static let columnSpacing: CGFloat = 4
+        // `nameHeight` is not a magic number, is the size
+        // to expand height like a card height + text title
         static let nameHeight: CGFloat = 100
         static let backgroundColor: Color = Color.gray.opacity(0.1)
     }
@@ -34,7 +36,7 @@ struct CardsListView: View {
                         ScrollView {
                             LazyVGrid(columns: gridItems,
                                       spacing: Constants.columnSpacing) {
-                                ForEach(viewModel.cards, id: \.self) { card in
+                                ForEach(viewModel.cards, id: \.id) { card in
                                     CardCell(card: card)
                                         .frame(width: frameSize,
                                                height: frameSize + Constants.nameHeight)
