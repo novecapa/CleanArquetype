@@ -12,10 +12,13 @@ struct CardsListView: View {
     enum Constants {
         static let columnNumber: CGFloat = 2
         static let columnSpacing: CGFloat = 4
+        static let cornerRadius: CGFloat = 8
         // `nameHeight` is not a magic number, is the size
         // to expand height like a card height + text title
         static let nameHeight: CGFloat = 100
+        static let frameLoading: CGFloat = 120
         static let backgroundColor: Color = Color.gray.opacity(0.1)
+        static let overlayBackColor: Color = Color.black.opacity(0.8)
     }
     
     @State private var isZoomed = false
@@ -82,7 +85,10 @@ struct CardsListView: View {
                     Text("Loading...")
                         .padding(.top)
                 }
-                .frame(width: 100, height: 120)
+                .frame(width: Constants.frameLoading,
+                       height: Constants.frameLoading)
+                .background(.black)
+                .cornerRadius(Constants.cornerRadius)
             }
         }
         .onAppear {
@@ -90,50 +96,29 @@ struct CardsListView: View {
         }
         .overlay(
             Group {
-                if isZoomed {
-                    Color.black.opacity(0.5)
+                if isZoomed,
+                   let card = selectedCard {
+                    Constants.overlayBackColor
                         .edgesIgnoringSafeArea(.all)
                         .transition(.opacity)
-                        .zIndex(1)
                         .onTapGesture {
                             withAnimation {
                                 isZoomed.toggle()
                                 selectedCard = nil
                             }
                         }
-                    if let selectedCard {
-                        ZoomedView(selectedCard: selectedCard, isZoomed: $isZoomed)
-                            .transition(.scale)
-                            .zIndex(2)
-                    }
+                    CardCell(card: card)
+                        .onTapGesture {
+                            withAnimation {
+                                isZoomed.toggle()
+                            }
+                        }
+                    .transition(.scale)
+                    .zIndex(2)
+                    .padding()
                 }
             }
         )
-    }
-}
-
-struct ZoomedView: View {
-    let selectedCard: Card
-    @Binding var isZoomed: Bool
-    
-    var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                CardCell(card: selectedCard)
-                    .padding()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(.black)
-                    .cornerRadius(8)
-                    .onTapGesture {
-                        withAnimation {
-                            isZoomed.toggle()
-                        }
-                    }
-                
-            }
-            .frame(width: geometry.size.width, height: geometry.size.height)
-            .transition(.asymmetric(insertion: .scale, removal: .scale))
-        }
     }
 }
 

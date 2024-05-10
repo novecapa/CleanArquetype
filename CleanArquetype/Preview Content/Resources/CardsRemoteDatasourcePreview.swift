@@ -27,9 +27,12 @@ struct CardsRemoteDatasourcePreview: CardsRemoteDatasourceProtocol {
         let data = try Data(contentsOf: bundleURL)
         return try JSONDecoder().decode(CardsDTO.self, from: data)
     }
-    
+
     func search(for name: String, page: Int, orderBy: OrderBy) async throws -> CardsDTO {
         let data = try Data(contentsOf: bundleURL)
-        return try JSONDecoder().decode(CardsDTO.self, from: data)
+        let cards = try JSONDecoder().decode(CardsDTO.self, from: data).data.filter {
+            $0.name.lowercased().contains(name.lowercased())
+        }
+        return CardsDTO(data: cards, page: 1, pageSize: 1, count: 1, totalCount: 1)
     }
 }
