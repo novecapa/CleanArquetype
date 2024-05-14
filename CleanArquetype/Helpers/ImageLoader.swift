@@ -1,8 +1,8 @@
 //
 //  ImageLoader.swift
-//  RickAndMorty
+//  CleanArquetype
 //
-//  Created by Josep Cerdá Penadés on 11/5/24.
+//  Created by Josep Cerdá Penadés on 14/5/24.
 //
 
 import SwiftUI
@@ -10,7 +10,7 @@ import SwiftUI
 @MainActor
 struct AsyncCachedImage<ImageView: View, PlaceholderView: View>: View {
 
-    private let imagePlaceHolder: UIImage = .placeHolder
+    private let imagePlaceHolder: UIImage = .checkmark
 
     var url: URL?
     let urlSession: URLSessionImageProtocol

@@ -36,7 +36,7 @@
 		721B60B92BEA214100F85F2C /* CardsListViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721B60B82BEA214100F85F2C /* CardsListViewPreview.swift */; };
 		721B60BB2BEA219A00F85F2C /* CardsRemoteDatasourcePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721B60BA2BEA219A00F85F2C /* CardsRemoteDatasourcePreview.swift */; };
 		721B60BE2BEA227F00F85F2C /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721B60BD2BEA227F00F85F2C /* CardCell.swift */; };
-		721B60C02BEA275600F85F2C /* CardImagePlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721B60BF2BEA275600F85F2C /* CardImagePlaceHolder.swift */; };
+		72A6E9312BF35155007F3A30 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6E9302BF35155007F3A30 /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +89,7 @@
 		721B60B82BEA214100F85F2C /* CardsListViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsListViewPreview.swift; sourceTree = "<group>"; };
 		721B60BA2BEA219A00F85F2C /* CardsRemoteDatasourcePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsRemoteDatasourcePreview.swift; sourceTree = "<group>"; };
 		721B60BD2BEA227F00F85F2C /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
-		721B60BF2BEA275600F85F2C /* CardImagePlaceHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImagePlaceHolder.swift; sourceTree = "<group>"; };
+		72A6E9302BF35155007F3A30 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,36 +213,21 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
-		721B606A2BE97AB100F85F2C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				721B606B2BE97AC400F85F2C /* Cards */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		721B606B2BE97AC400F85F2C /* Cards */ = {
-			isa = PBXGroup;
-			children = (
-				721B606C2BE97ACA00F85F2C /* Remote */,
-			);
-			path = Cards;
-			sourceTree = "<group>";
-		};
-		721B606C2BE97ACA00F85F2C /* Remote */ = {
+		721B606A2BE97AB100F85F2C /* DTO */ = {
 			isa = PBXGroup;
 			children = (
 				720E8F7B2BEC1159004457B2 /* CardsDTO.swift */,
 				720E8F7D2BEC1192004457B2 /* CardDTO.swift */,
 				720E8F7F2BEC11C0004457B2 /* CardImageDTO.swift */,
 			);
-			path = Remote;
+			path = DTO;
 			sourceTree = "<group>";
 		};
 		721B60862BE97D3900F85F2C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				721B60872BE97D4400F85F2C /* Log.swift */,
+				72A6E9302BF35155007F3A30 /* ImageLoader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -259,7 +244,7 @@
 		721B608A2BE97F5300F85F2C /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				721B606A2BE97AB100F85F2C /* Models */,
+				721B606A2BE97AB100F85F2C /* DTO */,
 				721B60912BE9805500F85F2C /* CardsRemoteDatasource.swift */,
 			);
 			path = Remote;
@@ -415,7 +400,6 @@
 			isa = PBXGroup;
 			children = (
 				721B60BD2BEA227F00F85F2C /* CardCell.swift */,
-				721B60BF2BEA275600F85F2C /* CardImagePlaceHolder.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -568,8 +552,8 @@
 				721B60B12BEA0F8100F85F2C /* CardsUseCase.swift in Sources */,
 				721B60842BE97D0A00F85F2C /* URLSessionProtocol.swift in Sources */,
 				721B603D2BE97A1900F85F2C /* CleanArquetypeApp.swift in Sources */,
+				72A6E9312BF35155007F3A30 /* ImageLoader.swift in Sources */,
 				721B60A02BE9850800F85F2C /* CardsListView.swift in Sources */,
-				721B60C02BEA275600F85F2C /* CardImagePlaceHolder.swift in Sources */,
 				720E8F822BEC12A4004457B2 /* Cards.swift in Sources */,
 				721B60A62BE9857000F85F2C /* CardsRepository.swift in Sources */,
 				721B60B92BEA214100F85F2C /* CardsListViewPreview.swift in Sources */,

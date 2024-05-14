@@ -17,3 +17,12 @@ extension URLSession: URLSessionProtocol {
         try await data(for: request)
     }
 }
+
+protocol URLSessionImageProtocol {
+    func dataTask(url: URLRequest) async throws -> (Data, URLResponse)
+}
+extension URLSession: URLSessionImageProtocol {
+    func dataTask(url: URLRequest) async throws -> (Data, URLResponse) {
+        try await data(for: url)
+    }
+}
