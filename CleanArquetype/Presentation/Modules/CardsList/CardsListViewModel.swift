@@ -13,7 +13,13 @@ final class CardsListViewModel: ObservableObject {
     @Published var cards: [Card] = []
     @Published var searchText: String = "" {
         didSet {
-            print("\(searchText)")
+            if searchText.count > 1 {
+                resetPagination()
+                searchCards()
+            } else if searchText.isEmpty {
+                resetPagination()
+                fetchCards()
+            }
         }
     }
     @Published var scrollToTop: Bool = false
@@ -29,13 +35,12 @@ final class CardsListViewModel: ObservableObject {
         self.useCase = useCase
     }
 
-    // MARK: Fetch cards paginated
-    func fetchCards() {
+    private func searchCards() {
         guard canLoadNewPage else { return }
         Task { @MainActor in
             do {
                 canLoadNewPage = false
-                let result = try await useCase.get(page: currentPage)
+                let result = try await useCase.search(for: searchText, page: currentPage)
                 populateResult(result)
             } catch {
                 canLoadNewPage = true
@@ -69,6 +74,20 @@ final class CardsListViewModel: ObservableObject {
 
 // MARK: Public methods
 extension CardsListViewModel {
+    func fetchCards() {
+        guard canLoadNewPage else { return }
+        Task { @MainActor in
+            do {
+                canLoadNewPage = false
+                let result = try await useCase.get(page: currentPage)
+                populateResult(result)
+            } catch {
+                canLoadNewPage = true
+                handleError(error)
+            }
+        }
+    }
+
     var firstItemId: String {
         cards.first?.id ?? ""
     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardsListView: View {
-    
+
     enum Constants {
         static let columnNumber: CGFloat = 2
         static let columnSpacing: CGFloat = 4
@@ -20,16 +20,15 @@ struct CardsListView: View {
         static let backgroundColor: Color = Color.gray.opacity(0.1)
         static let overlayBackColor: Color = Color.black.opacity(0.8)
     }
-    
+
     @State private var isZoomed = false
     @State private var selectedCard: Card? = nil
-    
     @StateObject var viewModel: CardsListViewModel
-    
+
     var gridItems = Array(repeating: GridItem(.flexible(),
                                               spacing: Constants.columnSpacing),
                           count: Int(Constants.columnNumber))
-    
+
     var body: some View {
         ZStack {
             GeometryReader { geometry in
@@ -40,21 +39,22 @@ struct CardsListView: View {
                             LazyVGrid(columns: gridItems,
                                       spacing: Constants.columnSpacing) {
                                 ForEach(viewModel.cards, id: \.id) { card in
-                                    CardCell(card: card)
-                                        .frame(width: frameSize,
-                                               height: frameSize + Constants.nameHeight)
-                                        .padding(.horizontal, Constants.columnSpacing)
-                                        .onAppear {
-                                            if card == viewModel.cards.last {
-                                                viewModel.fetchCards()
-                                            }
+                                    CardCell(card,
+                                             frameSize: frameSize - Constants.columnSpacing)
+                                    .padding(.horizontal, Constants.columnSpacing)
+                                    .frame(width: frameSize - Constants.columnSpacing,
+                                           height: frameSize + Constants.nameHeight)
+                                    .onAppear {
+                                        if card == viewModel.cards.last {
+                                            viewModel.fetchCards()
                                         }
-                                        .onTapGesture {
-                                            withAnimation {
-                                                isZoomed.toggle()
-                                                selectedCard = card
-                                            }
+                                    }
+                                    .onTapGesture {
+                                        withAnimation {
+                                            isZoomed.toggle()
+                                            selectedCard = card
                                         }
+                                    }
                                 }
                             }
                         }
@@ -107,15 +107,16 @@ struct CardsListView: View {
                                 selectedCard = nil
                             }
                         }
-                    CardCell(card: card)
+                    CardCell(card)
                         .onTapGesture {
                             withAnimation {
                                 isZoomed.toggle()
+                                selectedCard = nil
                             }
                         }
-                    .transition(.scale)
-                    .zIndex(2)
-                    .padding()
+                        .transition(.scale)
+                        .cornerRadius(Constants.cornerRadius)
+                        .padding()
                 }
             }
         )

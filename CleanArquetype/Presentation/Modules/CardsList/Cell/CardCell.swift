@@ -9,23 +9,37 @@ import SwiftUI
 
 struct CardCell: View {
 
+    enum Constants {
+        static let circleDiam: CGFloat = 20
+        static let fontSize: CGFloat = 14
+        static let paddingSize: CGFloat = 6
+        static let defaultSize: CGFloat = 120
+    }
+
     let card: Card
+    let frameSize: CGFloat
+    let urlSessionImage: URLSessionImageProtocol
+    init(_ card: Card,
+         frameSize: CGFloat = Constants.defaultSize,
+         urlSessionImage: URLSessionImageProtocol = URLSession.shared) {
+        self.card = card
+        self.frameSize = frameSize
+        self.urlSessionImage = urlSessionImage
+    }
+
     var body: some View {
         VStack(alignment: .center) {
-            if let url = card.imageLargeURL {
-                AsyncImage(
-                    url: url,
-                    content: { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                    },
-                    placeholder: {
-                        CardImagePlaceHolder()
-                    }
-                )
-            } else {
-                CardImagePlaceHolder()
+            AsyncCachedImage(url: card.imageLargeURL,
+                             urlSession: urlSessionImage) { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .transition(.opacity.animation(.default))
+            } placeholder: {
+                ProgressView()
+                    .scaledToFit()
+                    .frame(width: frameSize, height: frameSize)
+                    .background(.black)
             }
             VStack {
                 Text(card.name)
@@ -44,5 +58,5 @@ struct CardCell: View {
 }
 
 #Preview {
-    CardCell(card: .cardPreview)
+    CardCell(.cardPreview)
 }
