@@ -13,8 +13,10 @@ protocol CardsRepositoryProtocol {
 }
 
 struct CardsRepository: CardsRepositoryProtocol {
-
+    
+    // MARK: Private
     private let remote: CardsRemoteDatasourceProtocol
+
     init(remote: CardsRemoteDatasourceProtocol) {
         self.remote = remote
     }
