@@ -14,7 +14,9 @@ protocol CardsUseCaseProtocol {
 
 struct CardsUseCase: CardsUseCaseProtocol {
 
+    // MARK: - Init
     let repository: CardsRepositoryProtocol
+
     init(repository: CardsRepositoryProtocol) {
         self.repository = repository
     }
